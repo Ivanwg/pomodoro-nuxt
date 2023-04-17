@@ -1,8 +1,11 @@
+import TasksBlock from "@/components/TasksBlock";
 
 
 function Home() {
   return ( 
-    <div>Ind</div>
+    <div>
+      <TasksBlock />
+    </div>
    );
 }
 

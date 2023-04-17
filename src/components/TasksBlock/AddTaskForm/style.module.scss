@@ -1,0 +1,39 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+
+  input {
+    margin-bottom: 4px;
+    padding: 19px 15px;
+    background-color: var(--input-bgc);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 17px;
+    color: var(--always-black);
+    &::placeholder {
+      font-weight: 300;
+      color: var(--placeholder);
+    }
+  }
+}
+
+.err {
+  margin-bottom: 4px;
+  min-height: 17px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 17px;
+  color: var(--tomato);
+}
+
+.btn {
+}
+
+@media(min-width: 768px) {
+  .btn {
+    align-self: flex-start
+  }
+}
+
+

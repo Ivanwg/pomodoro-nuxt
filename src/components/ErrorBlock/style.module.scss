@@ -1,0 +1,31 @@
+.err {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 50vh;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 24px;
+  font-weight: 300;
+  color: var(--foreground-rgb);
+  white-space: nowrap;
+
+  img {
+    margin-bottom: 35px;
+  }
+
+}
+
+.name {
+  margin-bottom: 8px;
+  font-size: 50px;
+  font-weight: 500;
+  span {
+    color: var(--tomato);
+  }
+}

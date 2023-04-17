@@ -1,0 +1,86 @@
+@mixin link {
+  transition: transform .3s ease;
+  &:active {
+    transform: translateY(-1px);
+  }
+}
+
+
+.header {
+  box-shadow: var(--box-shadow);
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 0;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  margin-right: 15px;
+  cursor: pointer;
+  @include link;
+  img {
+    margin-right: 12px; 
+  }
+  span {
+    font-weight: 300;
+    font-size: 24px;
+    line-height: 1;
+    color: var(--tomato);
+  }
+  &:active {
+    transform: translateY(-1px);
+  }
+}
+
+
+.statistic {
+  display: flex;
+  align-items: flex-end;
+  @include link;
+  svg {
+    margin-right: 9px;
+    rect {
+      transition-property: fill, y, height;
+      transition-duration: .3s;
+      transition-timing-function: ease;
+    }
+  }
+  span {
+    display: block;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1;
+    color: var(--tomato);
+    transition-property: color;
+    transition-duration: .3s;
+    transition-timing-function: ease;
+  }
+  &:hover {
+    svg {
+      rect {
+        fill: var(--tomato-hover);
+      }
+      rect:first-child {
+        y: 10%;
+        height: 90%;
+      }
+      rect:nth-child(2) {
+        y: 55%;
+        height: 45%;
+      }
+      rect:last-child {
+        y: 30%;
+        height: 70%;
+      }
+    }
+    span {
+      color: var(--tomato-hover);
+    }
+  }
+}
+
