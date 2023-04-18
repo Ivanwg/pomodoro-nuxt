@@ -25,10 +25,12 @@
   @include link;
   img {
     margin-right: 12px; 
+    width: 25px;
+    height: 25px;
   }
   span {
     font-weight: 300;
-    font-size: 24px;
+    font-size: 16px;
     line-height: 1;
     color: var(--tomato);
   }
@@ -84,3 +86,14 @@
   }
 }
 
+@media(min-width: 768px) {
+  .logo {
+    img {
+      width: 40px;
+      height: 40px;
+    }
+    span {
+      font-size: 24px;
+    }
+  }
+}

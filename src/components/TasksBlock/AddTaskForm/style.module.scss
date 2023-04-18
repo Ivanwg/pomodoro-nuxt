@@ -28,11 +28,12 @@
 }
 
 .btn {
+  align-self: flex-start
 }
 
 @media(min-width: 768px) {
   .btn {
-    align-self: flex-start
+    
   }
 }
 

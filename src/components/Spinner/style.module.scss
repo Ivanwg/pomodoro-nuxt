@@ -14,7 +14,7 @@
 .spinner {
   position: absolute;
   top: 42%;
-  left: 50%;
+  // left: 50%;
   width: 100px;
   height: 100px;
   border-radius: 50%;
@@ -26,5 +26,5 @@
 }
 
 @keyframes s3{ 
-  100%{transform: rotate(1turn)}
+  100% {transform: rotate(1turn)}
 }

@@ -1,0 +1,53 @@
+.todays {
+  display: flex;
+  flex-direction: column;
+  gap: var(--statistic-gap);
+}
+
+.day {
+  padding: 25px;
+  color: var(--always-black);
+  background-color: var(--input-bgc);
+  .title {
+    text-align: left;    
+    margin-bottom: 14px;
+  }
+  .todayProgress {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 28px;
+    text-align: left;
+
+    span {
+      font-weight: 700;
+      color: var(--tomato);
+    }
+  }
+}
+
+.tomatopPlus {
+  .imgContent {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 23px;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 33px;
+    text-align: left;
+    color: var(--placeholder);
+    background-color: var(--input-bgc);
+    img {
+      margin-right: 15px;
+    }
+  }
+  .text {
+    padding: 9px;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 33px;
+    text-align: center;
+    color: white;
+    background-color: var(--tomato);
+  }
+}

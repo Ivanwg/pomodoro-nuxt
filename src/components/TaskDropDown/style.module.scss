@@ -1,0 +1,31 @@
+.wrap {
+  position: absolute;
+  top: 33px;
+  padding: 6px 0;
+  border: 1px solid var(--gray);
+  background-color: var(--background-end-rgb);
+  transform: translateX(calc(-50% + 12px));
+  animation: open .3s forwards;
+
+  &::before {
+    position: absolute;
+    top: -7px;
+    left: calc(50% - 6px);
+    content: '';
+    width: 12px;
+    height: 12px;
+    border-left: 1px solid var(--gray);
+    border-top: 1px solid var(--gray);
+    transform: rotate(45deg);
+    background-color: var(--background-end-rgb);
+  }
+}
+
+@keyframes open {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
