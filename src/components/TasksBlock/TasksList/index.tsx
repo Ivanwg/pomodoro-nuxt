@@ -15,8 +15,8 @@ const TasksList = observer(({additionalClassName}: IProps) => {
         tasks.list.length ? 
         <ul className={styles.tasksList}>
         {
-          tasks.list.map(taskObj => (
-            <li key={taskObj.id} className={styles.tasksLi}>
+          tasks.list.map((taskObj, index) => (
+            <li key={taskObj.id} className={styles.tasksLi} style={{zIndex: tasks.list.length - index}}>
               <TaskItem {...taskObj} />
             </li>
           ))

@@ -1,0 +1,5 @@
+.chartBlock {
+  display: grid;
+  gap: var(--statistic-gap);
+  grid-template-rows: auto 1fr;
+}

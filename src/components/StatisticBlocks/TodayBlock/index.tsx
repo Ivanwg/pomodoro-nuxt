@@ -2,11 +2,16 @@ import Image from 'next/image';
 import styles from './style.module.scss';
 import { createLongClassName } from '@/utils/createLongClassName';
 
+interface IProps {
+  additionalClassName?: string;
+}
 
 
-const TodayBlock = () => {
+const TodayBlock = ({additionalClassName} :IProps) => {
+  const names = additionalClassName ? [additionalClassName, styles.todays] : [styles.todays];
+
   return ( 
-    <div className={styles.todays}>
+    <div className={createLongClassName(names)}>
       <div className={styles.day}>
         <h3 className={createLongClassName(['title', styles.title])}>Понедельник</h3>
         <div className={styles.todayProgress}>

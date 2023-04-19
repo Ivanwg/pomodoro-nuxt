@@ -9,6 +9,7 @@
   color: var(--always-black);
   background-color: var(--input-bgc);
   .title {
+    font-size: 20px;
     text-align: left;    
     margin-bottom: 14px;
   }
@@ -49,5 +50,21 @@
     text-align: center;
     color: white;
     background-color: var(--tomato);
+  }
+}
+
+@media(min-width: 410px) {
+  .day {
+    .title {
+      font-size: 24px;
+    }
+  }
+}
+
+
+@media(min-width: 640px) {
+  .todays {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
   }
 }

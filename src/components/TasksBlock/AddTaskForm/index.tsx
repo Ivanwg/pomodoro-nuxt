@@ -13,10 +13,10 @@ function AddTaskForm() {
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();
     if (!inputValue.length) return;
-    tasks.appenTask({
+    tasks.appendTask({
       id: getRandomString(),
       name: inputValue,
-      tomatoesCount: 1
+      tomatoesCountNeed: 1
     });
     setInputValue('');
   }

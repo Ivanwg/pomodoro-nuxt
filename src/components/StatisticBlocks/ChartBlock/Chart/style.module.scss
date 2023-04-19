@@ -1,0 +1,11 @@
+.chart {
+  overflow-x: scroll;
+  canvas {
+    // width: 100% !important;
+    // height: auto !important;
+    min-width: 500px;
+    height: auto !important;
+    width: 100% !important;
+  }
+
+}

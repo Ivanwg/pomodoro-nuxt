@@ -4,6 +4,7 @@
   padding: 6px 0;
   border: 1px solid var(--gray);
   background-color: var(--background-end-rgb);
+  box-shadow: var(--drop-shadow);
   transform: translateX(calc(-50% + 12px));
   animation: open .3s forwards;
 

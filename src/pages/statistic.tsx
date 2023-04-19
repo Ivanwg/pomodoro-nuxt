@@ -1,3 +1,4 @@
+import ChartBlock from "@/components/StatisticBlocks/ChartBlock";
 import FocusBlock from "@/components/StatisticBlocks/FocusBlock";
 import PauseBlock from "@/components/StatisticBlocks/PauseBlock";
 import STopBlock from "@/components/StatisticBlocks/StopBlock";
@@ -7,11 +8,12 @@ function Statictic() {
   return ( 
     <>
       <div className='statistic'>
-        <h1 className='title'>Ваша активность</h1>
-        <TodayBlock />
-        <FocusBlock />
-        <PauseBlock />
-        <STopBlock />
+        <h1 className='title' additionalClassName='cell-title'>Ваша активность</h1>
+        <ChartBlock additionalClassName='cell-chart' />
+        <TodayBlock additionalClassName='cell-todays' />
+        <FocusBlock additionalClassName='cell-card' />
+        <PauseBlock additionalClassName='cell-card' />
+        <STopBlock additionalClassName='cell-card' />
       </div>
     </>
    );

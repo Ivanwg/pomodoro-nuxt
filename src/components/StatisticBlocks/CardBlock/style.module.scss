@@ -5,6 +5,7 @@
   gap: 20px;
   color: var(--always-black);
   .name {   
+    font-size: 20px;
   }
   .value {
     font-size: 64px;
@@ -14,11 +15,28 @@
   .icon {
     grid-column: 2 / 3;
     grid-row: 1 / 3;
+    display: block;
     align-self: center;
     width: 108px;
     height: 108px;
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
+  }
+  &[aria-disabled] {
+    background-color: var(--input-bgc);
+    svg {
+      path {
+        stroke: var(--gray);
+      }
+    }
+  }
+}
+
+@media(min-width: 410px) {
+  .CardBlock {
+    .name {   
+      font-size: 24px;
+    }
   }
 }
