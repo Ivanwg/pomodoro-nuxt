@@ -8,12 +8,12 @@ function Statictic() {
   return ( 
     <>
       <div className='statistic'>
-        {/* <h1 className='title' additionalClassName='cell-title'>Ваша активность</h1>
+        <h1 className='title cell-title'>Ваша активность</h1>
         <ChartBlock additionalClassName='cell-chart' />
         <TodayBlock additionalClassName='cell-todays' />
         <FocusBlock additionalClassName='cell-card' />
         <PauseBlock additionalClassName='cell-card' />
-        <STopBlock additionalClassName='cell-card' /> */}
+        <STopBlock additionalClassName='cell-card' />
       </div>
     </>
    );
