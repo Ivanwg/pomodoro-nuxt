@@ -1,6 +1,8 @@
 import { observer } from 'mobx-react-lite';
 import styles from './style.module.scss';
 import { createLongClassName } from '@/utils/createLongClassName';
+import GreenBtn from '../GreenBtn';
+import RedBtn from '../RedBtn';
 
 
 interface IProps {
@@ -31,8 +33,8 @@ const Timer = observer(({additionalClassName}: IProps) => {
           </button>
         </div>
         <div className={styles.btns}>
-          <button className={styles.first}>Start</button>
-          <button className={styles.seconds}>Pause</button>
+          <GreenBtn classNames={[styles.first]}>Start</GreenBtn>
+          <RedBtn classNames={[styles.seconds]}>Pause</RedBtn>
         </div>
       </div>
     </div>

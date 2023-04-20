@@ -9,6 +9,55 @@
 }
 
 .body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding: 70px 70px 107px;
   background-color: var(--input-bgc);
+}
+
+.time {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 150px;
+  font-weight: 200;
+  line-height: 179px;
+  color: var(--always-black);
+}
+
+.addTime {
+  position: absolute;
+  top: 0;
+  right: -70px;
+  transition: transform .3s ease;
+  svg {
+    circle {
+      transition: fill .3s ease;
+    }
+  }
+
+  &:active {
+    transform: translateY(1px);
+  }
+}
+
+.btns {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  margin-top: 40px;
+}
+
+@media(min-width: 768px) {
+  .addTime { 
+    &:hover {
+      svg {
+        circle {
+          fill: var(--green-hover);
+        }
+      }
+    }
+  }
 }

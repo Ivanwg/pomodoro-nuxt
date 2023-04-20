@@ -1,0 +1,27 @@
+
+
+.btn {
+  padding: 17px 48px;
+  border: 2px solid var(--tomato);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 17px;
+  text-align: center;
+  color: var(--tomato);
+  transition-property: transform background-color color;
+  transition-duration: .3s;
+  transition-timing-function: ease;
+
+  &:active {
+    transform: translateY(1px);
+  }
+}
+
+@media(min-width: 768px) {
+  .btn {
+    &:hover {
+      color: white;
+      background-color: var(--tomato);
+    }
+  }
+}
