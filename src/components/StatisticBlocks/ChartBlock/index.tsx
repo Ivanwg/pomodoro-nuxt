@@ -11,7 +11,7 @@ const ChartBlock = ({additionalClassName}: IProps) => {
   const names = additionalClassName ? [additionalClassName, styles.chartBlock] : [styles.chartBlock];
   return ( 
     <div className={createLongClassName(names)}>
-      <WeekDropDown />
+      <WeekDropDown additionalClassName={styles.gridEnd} />
       <Chart />
     </div>
    );

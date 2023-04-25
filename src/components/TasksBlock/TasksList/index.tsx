@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react-lite';
 import tasks from '../../../store/tasks';
 import styles from './style.module.scss';
-import TaskItem from '../TaskItem/TaskItem';
+import TaskItem from '../TaskItem';
 
 
 interface IProps {
@@ -12,11 +12,11 @@ const TasksList = observer(({additionalClassName}: IProps) => {
   return ( 
     <div className={additionalClassName ? additionalClassName : undefined}>
       {
-        tasks.list.length ? 
+        tasks.activeTasksList.length ? 
         <ul className={styles.tasksList}>
         {
-          tasks.list.map((taskObj, index) => (
-            <li key={taskObj.id} className={styles.tasksLi} style={{zIndex: tasks.list.length - index}}>
+          tasks.activeTasksList.map((taskObj, index) => (
+            <li key={taskObj.id} className={styles.tasksLi} style={{zIndex: tasks.activeTasksList.length - index}}>
               <TaskItem {...taskObj} />
             </li>
           ))

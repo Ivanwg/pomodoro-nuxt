@@ -8,16 +8,21 @@
   transition-duration: .3s;
   transition-timing-function: ease;
 
-  &:active {
+  &:active:enabled {
     background-color: var(--green-hover);
     transform: translateY(-1px);
+  }
+  &:disabled {
+    opacity: .5;
+    cursor: auto;
+    
   }
 }
 
 @media(min-width: 768px) {
   .btn {
   
-    &:hover {
+    &:hover:enabled {
       background-color: var(--green-hover);
     }
   }

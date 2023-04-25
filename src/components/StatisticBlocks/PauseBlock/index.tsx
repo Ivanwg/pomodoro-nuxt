@@ -5,7 +5,7 @@ interface IProps {
 }
 
 const PauseBlock = ({additionalClassName}: IProps) => {
-  const names = additionalClassName ? ['green-card', additionalClassName] : ['green-card'];
+  const names = additionalClassName ? ['blue-card', additionalClassName] : ['blue-card'];
   return ( 
     <CardBlock additionalClassNames={names} name='Время на паузе' value={'34'}>
       <svg width="129" height="129" viewBox="0 0 129 129" fill="none" xmlns="http://www.w3.org/2000/svg">

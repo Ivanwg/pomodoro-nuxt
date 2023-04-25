@@ -1,44 +1,70 @@
 import { makeAutoObservable } from 'mobx';
+import user from './user';
 
 export interface ITaskObj {
   id: string;
   name: string;
   tomatoesCountNeed: number;
+  tomatoesDone: number;
 }
 
 export type TTasksList = Array<ITaskObj>;
 
+export interface ITasksDateObj {
+
+}
+
 
 class Tasks {
-  list: TTasksList = []
+  activeTasksList: TTasksList = []
+  tomatoesMinLimit = 1;
+  tomatoesMaxLimit = 99;
   constructor() {
     makeAutoObservable(this);
   }
 
   appendTask(task: ITaskObj) {
-    if (!this.findById(task.id)) {
-      this.list.push(task);
+    if (this.activeTasksList.length === 0) {
+      user.changeStatus('BETWEEN_TASKS');
     }
+    if (!this.findById(task.id)) {
+      this.activeTasksList.push(task);
+    }
+    console.log(task.id)
   }
 
   clearTasks() {
-    this.list = [];
+    this.activeTasksList = [];
+    user.changeStatus('WITHOUT_TASK');
   }
 
   deleteTask(id: string) {
-    this.list = this.list.filter(obj => obj.id !== id)
+    this.activeTasksList = this.activeTasksList.filter(obj => obj.id !== id);
+    if (this.activeTasksList.length === 0) {
+      user.changeStatus('WITHOUT_TASK');
+    }
   }
 
   plusTomatosNeed(id: string) {
     const target = this.findById(id);
-    if (target) {
+    if (target&& target.tomatoesCountNeed < this.tomatoesMaxLimit) {
       target.tomatoesCountNeed += 1;
+    }
+  }
+
+  doneOneTomato(id: string) {
+    const target = this.findById(id);
+    if (target) {
+      target.tomatoesDone += 1;
+      if (target.tomatoesCountNeed >= target.tomatoesDone) {
+        this.deleteTask(id);
+      }
     }
   }
 
   minusTomatosNeed(id: string) {
     const target = this.findById(id);
-    if (target && target.tomatoesCountNeed > 1) {
+    if (target && target.tomatoesCountNeed > this.tomatoesMinLimit) {
       target.tomatoesCountNeed -= 1;
     }
   }
@@ -51,7 +77,15 @@ class Tasks {
   }
 
   findById(id: string) {
-    return this.list.find(obj => obj.id === id)
+    return this.activeTasksList.find(obj => obj.id === id)
+  }
+
+  getActiveTaskObj() {
+    if (!this.activeTasksList.length) {
+      return null;
+    } else {
+      return this.activeTasksList[0];
+    }
   }
 
 }

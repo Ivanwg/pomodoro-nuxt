@@ -7,15 +7,23 @@ interface IProps {
   onClick?: () => void;
   type?: "button" | "submit" | "reset" | undefined;
   classNames?: Array<string>;
+  disabled?: boolean;
 }
 
-function GreenBtn({children, onClick, type, classNames}: IProps) {
+
+function GreenBtn({children, onClick, type, classNames, disabled=false}: IProps) {
   const names = classNames ? [styles.btn, ...classNames] : [styles.btn];
+  const onGreenClick = (e: React.MouseEvent) => {
+    if (onClick) {
+      onClick();
+    }
+  }
   return ( 
     <button 
       className={createLongClassName(names)} 
-      onClick={onClick ? onClick : undefined}
+      onClick={onGreenClick}
       type={type ? type : undefined}
+      disabled={disabled ? true : undefined}
     >
       {children}
     </button>

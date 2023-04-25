@@ -8,20 +8,36 @@
   line-height: 17px;
   text-align: center;
   color: var(--tomato);
-  transition-property: transform background-color color;
+  transition-property: transform, background-color, border-color, color;
   transition-duration: .3s;
   transition-timing-function: ease;
 
-  &:active {
-    transform: translateY(1px);
+  &:active:enabled {
+    transform: translateY(-1px);
   }
+  &:disabled {
+    color: var(--gray);
+    border-color: var(--gray);
+    cursor: auto;
+  }
+}
+
+.btnFilled {
+  background-color: var(--tomato);
+  color: white;
 }
 
 @media(min-width: 768px) {
   .btn {
-    &:hover {
+    &:hover:enabled {
       color: white;
       background-color: var(--tomato);
+    }
+  }
+  .btnFilled {
+    &:hover:enabled {
+      background-color: var(--tomato-hover);
+      border-color: var(--tomato-hover);
     }
   }
 }

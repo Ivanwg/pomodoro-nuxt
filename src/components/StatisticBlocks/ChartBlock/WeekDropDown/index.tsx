@@ -1,17 +1,38 @@
-import { MouseEvent, useState } from 'react';
+import { MouseEvent, useEffect, useRef, useState } from 'react';
 import { observer } from 'mobx-react-lite';
 import statistic from '@/store/statistic';
 import styles from './style.module.scss';
 import { createLongClassName } from '@/utils/createLongClassName';
 
 
-const WeekDropDown = observer(() => {
+interface IProps {
+  additionalClassName?: string;
+}
+
+const WeekDropDown = observer(({additionalClassName}: IProps) => {
 
   const [selectOpened, setSelectOpened] = useState(false);
   const mainClassNames = selectOpened ? [styles.select, styles.opened] : [styles.select];
+  if (additionalClassName) {
+    mainClassNames.push(additionalClassName);
+  }
+  const selectWrapRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function handle(e: Event) {
+      if (e.target instanceof Node && !selectWrapRef.current?.contains(e.target)) {
+        setSelectOpened(false);
+      }
+    }
+    document.addEventListener('click', handle);
+
+    return () => {
+      document.removeEventListener('click', handle);
+    }
+  }, []);
 
   return ( 
-    <div className={createLongClassName(mainClassNames)}>
+    <div className={createLongClassName(mainClassNames)} ref={selectWrapRef}>
       <div className={createLongClassName([styles.item, styles.activeItem])}>
         <button 
           className={styles.btn}

@@ -4,8 +4,15 @@
     // width: 100% !important;
     // height: auto !important;
     min-width: 500px;
-    height: auto !important;
+    height: 100% !important;
     width: 100% !important;
   }
 
+}
+
+@media(min-width: 1000px) {
+  .chart {
+    overflow-x: auto;
+  
+  }
 }

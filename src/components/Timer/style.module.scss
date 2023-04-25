@@ -1,18 +1,32 @@
 
-.wrap {
+.timerWrap {
   max-width: 733px;
+
 }
 
 .header {
-  padding: 19px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 20px;
+  min-height: 55px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 17px;
   background-color: var(--gray);
+  pointer-events: none;
+}
+
+.name {
+  font-weight: 700;
 }
 
 .body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 70px 70px 107px;
+  padding: 40px 20px;
   background-color: var(--input-bgc);
 }
 
@@ -21,43 +35,119 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 150px;
+  font-size: 80px;
   font-weight: 200;
-  line-height: 179px;
+  line-height: 100px;
   color: var(--always-black);
+  pointer-events: none;
 }
+
+.numbers {
+  min-width: 93px;
+}
+
+
 
 .addTime {
   position: absolute;
-  top: 0;
-  right: -70px;
+  top: calc(50% - 16px);
+  right: -35px;
+  border-radius: 50%;
   transition: transform .3s ease;
+  pointer-events: initial;
   svg {
+    display: block;
+    width: 30px;
+    height: 30px;
     circle {
       transition: fill .3s ease;
     }
   }
 
-  &:active {
-    transform: translateY(1px);
+  &:active:enabled {
+    transform: translateY(-1px);
   }
+  &:disabled {
+    cursor: auto;
+    opacity: .6;
+  }
+}
+
+.empty {
+  min-height: 20px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 20px;
+  color: var(--always-black);
+  text-align: center;
+  pointer-events: none;
 }
 
 .btns {
   display: flex;
   align-items: center;
-  gap: 25px;
-  margin-top: 40px;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 10px;
+  button {
+    min-width: 100%;
+  }
 }
 
 @media(min-width: 768px) {
+  .header {
+    padding: 19px 40px;
+  } 
+
+  .body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 70px 70px 107px;
+  }
+
+  .time {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 150px;
+    font-weight: 200;
+    line-height: 179px;
+    color: var(--always-black);
+  }
+  .numbers {
+    min-width: 175px;
+  }
+
   .addTime { 
-    &:hover {
+    top: calc(50% - 25px);
+    right: -70px;
+    svg {
+      display: block;
+      width: 50px;
+      height: 50px;
+    }
+
+    &:hover:enabled {
       svg {
         circle {
           fill: var(--green-hover);
         }
       }
+    }
+  }
+
+  .empty {
+    transform: translateY(-10px);
+  }
+
+  .btns {
+    gap: 25px;
+    margin-top: 20px;
+    button {
+      min-width: auto;
     }
   }
 }
