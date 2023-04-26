@@ -47,6 +47,10 @@ class Timer {
   stop() {
     clearInterval(this.timerInterval);
   }
+  
+  pause() {
+    clearInterval(this.timerInterval);
+  }
 
   toggleTimer() {
     // this.isOpened = !this.isOpened;

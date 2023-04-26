@@ -3,11 +3,11 @@ import { makeAutoObservable } from 'mobx';
 const workTime = 1;
 const restTime = 5;
 
-export type TUserStatus = 'WORK' | 'SHORT_REST' | 'LONG_REST' | 'REST_PAUSE' | 'BETWEEN_TASKS' | 'WITHOUT_TASK';
+export type TUserStatus = 'WORK' | 'SHORT_REST' | 'LONG_REST' | 'REST_PAUSE' | 'BETWEEN_TASKS' | 'WITHOUT_TASK' | 'TASK_PAUSE';
 
 class User {
   status: TUserStatus = 'WITHOUT_TASK';
-  tasksInARow = 0;
+  workDoneLevel = 0;
 
   constructor() {
     makeAutoObservable(this);
@@ -24,6 +24,16 @@ class User {
 
   changeStatus(newStatus: TUserStatus) {
     this.status = newStatus;
+  }
+
+  doneAndDetermineRest() {
+    this.workDoneLevel += 1;
+    if (this.workDoneLevel === 4) {
+      this.status = 'LONG_REST';
+      this.workDoneLevel = 0;
+    } else {
+      this.status = 'SHORT_REST';
+    }
   }
 
 }

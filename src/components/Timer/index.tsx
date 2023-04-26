@@ -27,13 +27,28 @@ const Timer = observer(({additionalClassName}: IProps) => {
 
 
   const onStart = () => {
-    console.log('I start')
     timerStore.run();
     user.changeStatus('WORK');
   }
 
   const onStop = () => {
     timerStore.stop();
+    user.changeStatus('BETWEEN_TASKS');
+  }
+
+  const onPause = () => {
+    timerStore.stop();
+    user.changeStatus('TASK_PAUSE');
+  }
+
+  const onSkipRest = () => {
+    timerStore.stop();
+    user.changeStatus('BETWEEN_TASKS');
+  }
+
+  const onTaskDone = () => {
+    timerStore.stop();
+    user.doneAndDetermineRest();
   }
 
   const onAddMinute = () => {
@@ -54,12 +69,40 @@ const Timer = observer(({additionalClassName}: IProps) => {
       });
     } else if (user.status === 'WORK') {
       setGreenBtnObj({
-        func: () => {console.log('I paused')},
+        func: onPause,
+        text: 'Пауза',
+      });
+      setRedBtnObj({
+        func: onStop,
+        text: 'Стоп',
+      });
+    } else if (user.status === 'TASK_PAUSE') {
+      setGreenBtnObj({
+        func: () => {},
+        text: 'Продолжить',
+      });
+      setRedBtnObj({
+        func: () => {},
+        text: 'Сделано',
+      });
+    } else if (user.status === 'LONG_REST' || user.status === 'SHORT_REST') {
+      setGreenBtnObj({
+        func: () => {},
         text: 'Пауза',
       });
       setRedBtnObj({
         func: () => {},
-        text: 'Стоп',
+        text: 'Пропустить',
+      });
+    }
+    else if (user.status === 'REST_PAUSE') {
+      setGreenBtnObj({
+        func: () => {},
+        text: 'Продолжить',
+      });
+      setRedBtnObj({
+        func: () => {},
+        text: 'Пропустить',
       });
     }
   }, [user.status, setGreenBtnObj, setRedBtnObj]);
