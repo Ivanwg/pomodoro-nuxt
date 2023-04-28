@@ -1,5 +1,6 @@
 import { makeAutoObservable } from 'mobx';
 import user from './user';
+import { appendLocalStorageTask, updateLocalStorageTasks } from './localStore/tasks';
 // import timer from './timer';
 
 export interface ITaskObj {
@@ -31,17 +32,19 @@ class Tasks {
     }
     if (!this.findById(task.id)) {
       this.activeTasksList.push(task);
+      appendLocalStorageTask(task);
     }
   }
 
   clearTasks() {
     this.activeTasksList = [];
+    updateLocalStorageTasks(this.activeTasksList);
     // user.changeStatus('WITHOUT_TASK');
   }
 
   deleteTask(id: string) {
-    console.log(id)
     this.activeTasksList = this.activeTasksList.filter(obj => obj.id !== id);
+    updateLocalStorageTasks(this.activeTasksList);
     if (this.activeTasksList.length === 0) {
       // user.changeStatus('WITHOUT_TASK');
       // timer.deactivate();
@@ -53,6 +56,7 @@ class Tasks {
     const target = this.findById(id);
     if (target && target.tomatoesCountNeed < this.tomatoesMaxLimit) {
       target.tomatoesCountNeed += 1;
+      updateLocalStorageTasks(this.activeTasksList);
     }
   }
 
@@ -63,6 +67,7 @@ class Tasks {
       if (target.tomatoesCountNeed <= target.tomatoesDone) {
         this.deleteTask(target.id);
       }
+      updateLocalStorageTasks(this.activeTasksList);
     }
   }
 
@@ -70,6 +75,7 @@ class Tasks {
     const target = this.findById(id);
     if (target && target.tomatoesCountNeed > this.tomatoesMinLimit) {
       target.tomatoesCountNeed -= 1;
+      updateLocalStorageTasks(this.activeTasksList);
     }
   }
 
@@ -77,6 +83,7 @@ class Tasks {
     const target = this.findById(id);
     if (target) {
       target.name = newName;
+      updateLocalStorageTasks(this.activeTasksList);
     }
   }
 
@@ -90,6 +97,10 @@ class Tasks {
     } else {
       return this.activeTasksList[0];
     }
+  }
+  
+  setTasks(newTasks: TTasksList) {
+    this.activeTasksList = newTasks;
   }
 
 }

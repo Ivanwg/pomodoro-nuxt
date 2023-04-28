@@ -1,5 +1,6 @@
 import { makeAutoObservable } from 'mobx';
 import timer from './timer';
+import tasks from './tasks';
 
 export type TUserStatus = 'WORK' | 'SHORT_REST' | 'LONG_REST' | 'REST_PAUSE' | 'BETWEEN_TASKS' | 'WITHOUT_TASK' | 'TASK_PAUSE';
 
@@ -21,6 +22,8 @@ class User {
   }
 
   setInitialStatus() {
+    // tasks.setDefaultLocalStorage();
+    // this.status = !tasks.getLocalStorageTasks().length ? 'WITHOUT_TASK' : 'BETWEEN_TASKS';
     this.status = 'WITHOUT_TASK';
     // const a = new Date()
     // const b = new Date(new Date().setMinutes(20))
