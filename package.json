@@ -23,6 +23,7 @@
     "react-chartjs-2": "^5.2.0",
     "react-dom": "18.2.0",
     "sass": "^1.62.0",
-    "typescript": "5.0.4"
+    "typescript": "5.0.4",
+    "use-sound": "^4.0.1"
   }
 }

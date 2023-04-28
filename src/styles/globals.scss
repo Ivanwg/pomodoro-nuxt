@@ -64,7 +64,7 @@ a {
 }
 
 main {
-  padding: 100px 0 300px;
+  padding: 50px 0 200px;
 }
 
 .container {
@@ -118,6 +118,9 @@ main {
 }
 
 @media (min-width: 640px) {
+  main {
+    padding: 100px 0 300px;
+  }
   .statistic {
     grid-template-columns: repeat(2, 1fr);
     .cell-chart {

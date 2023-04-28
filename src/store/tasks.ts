@@ -1,5 +1,6 @@
 import { makeAutoObservable } from 'mobx';
 import user from './user';
+// import timer from './timer';
 
 export interface ITaskObj {
   id: string;
@@ -26,38 +27,41 @@ class Tasks {
   appendTask(task: ITaskObj) {
     if (this.activeTasksList.length === 0) {
       user.changeStatus('BETWEEN_TASKS');
+      // timer.setWorkTimeDefault();
     }
     if (!this.findById(task.id)) {
       this.activeTasksList.push(task);
     }
-    console.log(task.id)
   }
 
   clearTasks() {
     this.activeTasksList = [];
-    user.changeStatus('WITHOUT_TASK');
+    // user.changeStatus('WITHOUT_TASK');
   }
 
   deleteTask(id: string) {
+    console.log(id)
     this.activeTasksList = this.activeTasksList.filter(obj => obj.id !== id);
     if (this.activeTasksList.length === 0) {
-      user.changeStatus('WITHOUT_TASK');
+      // user.changeStatus('WITHOUT_TASK');
+      // timer.deactivate();
+
     }
   }
 
   plusTomatosNeed(id: string) {
     const target = this.findById(id);
-    if (target&& target.tomatoesCountNeed < this.tomatoesMaxLimit) {
+    if (target && target.tomatoesCountNeed < this.tomatoesMaxLimit) {
       target.tomatoesCountNeed += 1;
     }
   }
 
-  doneOneTomato(id: string) {
-    const target = this.findById(id);
+  doneOneTomato(id: string = '') {
+    const target = id.length ? this.findById(id) : this.getActiveTaskObj();
     if (target) {
       target.tomatoesDone += 1;
-      if (target.tomatoesCountNeed >= target.tomatoesDone) {
-        this.deleteTask(id);
+      if (target.tomatoesCountNeed <= target.tomatoesDone) {
+        this.deleteTask(target.id);
       }
     }
   }

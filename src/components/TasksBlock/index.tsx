@@ -10,7 +10,7 @@ function TasksBlock() {
         <h1 className={createLongClassName(['title', styles.title])}>{'Ура! Теперь можно начать работать:'}</h1>
         <ul className={styles.staticList}>
           <li>
-            {'Выберите категорию и напишите название текущей задачи'}
+            {'Напишите название текущей задачи'}
           </li>
           <li>
             {'Запустите таймер («помидор»)'}

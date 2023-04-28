@@ -18,6 +18,14 @@
   pointer-events: none;
 }
 
+.headerWork {
+  background-color: var(--tomato);
+}
+
+.headerPause {
+  background-color: var(--green);
+}
+
 .name {
   font-weight: 700;
 }
@@ -42,8 +50,20 @@
   pointer-events: none;
 }
 
+.timeWork {
+  color: var(--tomato);
+}
+
+.timeRest {
+  color: var(--green);
+}
+
 .numbers {
   min-width: 93px;
+  text-align: left;
+  &:first-child {
+    text-align: right;
+  }
 }
 
 
@@ -108,14 +128,8 @@
   }
 
   .time {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     font-size: 150px;
-    font-weight: 200;
     line-height: 179px;
-    color: var(--always-black);
   }
   .numbers {
     min-width: 175px;
