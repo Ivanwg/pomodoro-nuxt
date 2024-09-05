@@ -1,18 +1,15 @@
 .chart {
+  min-height: 471px;
   overflow-x: scroll;
-  canvas {
-    // width: 100% !important;
-    // height: auto !important;
-    min-width: 500px;
-    height: 100% !important;
-    width: 100% !important;
+  overflow-y: hidden;
+  background-color: var(--input-bgc);
+  div {
+    min-width: 700px !important;
   }
-
 }
 
 @media(min-width: 1000px) {
   .chart {
-    overflow-x: auto;
-  
+    overflow: hidden;
   }
 }

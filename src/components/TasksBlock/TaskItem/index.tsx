@@ -1,13 +1,15 @@
 import { ChangeEvent, useState, FocusEvent, useRef, useEffect } from 'react';
 import tasks, { ITaskObj } from '@/store/tasks';
 import styles from './style.module.scss';
-import TaskDropDown from '@/components/TaskDropDown/TaskDropDown';
+import TaskDropDown from '@/components/TaskDropDown';
 import { createLongClassName } from '@/utils/createLongClassName';
 import ReactDOM from 'react-dom';
 import Modal from '@/components/Modal';
 import { observer } from 'mobx-react-lite';
 import modalWindow from '../../../store/modal';
 import RedBtn from '@/components/RedBtn';
+import timer from '@/store/timer';
+import user from '@/store/user';
 
 
 
@@ -40,8 +42,16 @@ const TaskItem = observer(({id, tomatoesCountNeed, name}: ITaskObj) => {
   }
 
   const onDelete = (id: string) => {
-    tasks.deleteTask(id);
     modalWindow.closeModal();
+    if (tasks.getActiveTaskObj()?.id === id && tasks.activeTasksList.length > 1) {
+      timer.stop();
+      user.changeStatus('BETWEEN_TASKS');
+    }
+    tasks.deleteTask(id);
+    if (!tasks.activeTasksList.length) {
+      timer.stop();
+      user.changeStatus('WITHOUT_TASK');
+    }
   }
 
   const TASK_OPTIONS = [
@@ -68,7 +78,7 @@ const TaskItem = observer(({id, tomatoesCountNeed, name}: ITaskObj) => {
       name: 'Удалить',
       iconClassName: styles.delete,
       func: (id: string) => {
-        modalWindow.openModal();
+        modalWindow.openModal('DELETE');
         setDropOpened(false);
         setToDeleteItem(id);
       },
@@ -99,7 +109,7 @@ const TaskItem = observer(({id, tomatoesCountNeed, name}: ITaskObj) => {
 
   return ( 
     <div className={styles.taskItem}>
-      {modalWindow.isOpened && toDeleteItem &&
+      {modalWindow.isOpened && toDeleteItem && modalWindow.whatIsOpened === 'DELETE' && 
       <Modal>
         <div className={styles.deleteConfirm}>
           <h3 className={styles.deleteTitle}>Удалить задачу?</h3>

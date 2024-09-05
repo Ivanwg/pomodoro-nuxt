@@ -1,0 +1,43 @@
+.btn {
+  padding: 17px 48px;
+  border: 2px solid var(--tomato);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 17px;
+  text-align: center;
+  color: var(--tomato);
+  transition-property: transform, background-color, border-color, color;
+  transition-duration: 0.3s;
+  transition-timing-function: ease;
+}
+.btn:active:enabled {
+  transform: translateY(-1px);
+}
+.btn:disabled {
+  color: var(--gray);
+  border-color: var(--gray);
+  cursor: auto;
+}
+
+.btnFilled {
+  background-color: var(--tomato);
+  color: white;
+  background-color: var(--tomato);
+}
+.btnFilled:disabled {
+  border-color: var(--tomato);
+  color: white;
+  opacity: 0.5;
+  cursor: auto;
+}
+
+@media (min-width: 768px) {
+  .btn:hover:enabled {
+    color: white;
+    background-color: var(--tomato);
+  }
+  .btnFilled:hover:enabled {
+    background-color: var(--tomato-hover);
+    border-color: var(--tomato-hover);
+  }
+}/*# sourceMappingURL=style.module.css.map */

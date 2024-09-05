@@ -1,0 +1,56 @@
+.recharts-wrapper {
+  .recharts-layer .recharts-bar-rectangle {
+    path {
+      transition: opacity .3s ease;
+    }
+  }
+  .xAxis {
+    tspan {
+      font-family: 'SF UI Display';
+      font-size: 20px;
+      font-weight: 400;
+      line-height: 23px;
+      letter-spacing: 0em;
+    }
+    text {
+      transition: fill .3s ease;
+    }
+  }
+  .yAxis {
+    text {
+      display: flex;
+      align-items: center;
+    }
+    tspan {
+      font-family: 'SF UI Display';
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 33px;
+      letter-spacing: 0em;
+    }
+  }
+
+}
+
+@media(min-width: 768px) {
+  .recharts-wrapper {
+    .xAxis {
+      tspan {
+        font-size: 24px;
+        line-height: 29px;
+      }
+      text {
+        &:hover {
+          fill: var(--pink) !important;
+        }
+      }
+    }
+    .recharts-layer .recharts-bar-rectangle {
+      path {
+        &:hover {
+          opacity: .9;
+        }
+      }
+    }
+  }
+}

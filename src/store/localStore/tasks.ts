@@ -2,7 +2,7 @@ import {TTasksList, ITaskObj} from '../tasks';
 const key = 'POMODORO_TASKS';
 
 
-export function setDefaultLocalStorage() {
+export function setDefaultTaskLocalStorage() {
   if (!localStorage.getItem(key)) {
     localStorage.setItem(key, JSON.stringify([]));
   }

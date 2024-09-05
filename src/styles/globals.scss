@@ -20,6 +20,8 @@
 
   --tomato: #DC3E22;
   --tomato-hover: #B7280F;
+  --pink: #EA8A79;
+  --pink-hover: #d05d48;
   --green: #A8B64F;
   --green-hover: #899441;
   --gray: #C4C4C4;
@@ -129,6 +131,12 @@ main {
     .cell-todays {
       grid-row: 3 / 6;
     }
+    .cell-title {
+      align-self: center;
+    }
+    .cell-drop {
+      justify-self: end;
+    }
   }
 }
 
@@ -137,10 +145,13 @@ main {
     grid-template-columns: repeat(12, 1fr);
     .cell-title {
       grid-column: 1 / 4;
-      align-self: center;
+      line-height: 56px;
+    }
+    .cell-drop {
+      grid-column: 4 / -1;
     }
     .cell-chart {
-      grid-row: 1 / 4;
+      grid-row: 2 / 4;
       grid-column: 4 / -1;
     }
     .cell-todays{

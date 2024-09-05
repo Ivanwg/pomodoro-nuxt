@@ -1,0 +1,25 @@
+@charset "UTF-8";
+.tasksBlock {
+  max-width: 710px;
+}
+.tasksBlock .staticList li {
+  display: flex;
+  list-style-type: none;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 33px;
+}
+.tasksBlock .staticList li:before {
+  content: "•";
+  margin-right: 15px;
+  display: inline-block;
+  height: 100%;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 2;
+  color: var(--tomato-hover);
+}
+
+.title {
+  margin-bottom: 3px;
+}/*# sourceMappingURL=style.module.css.map */

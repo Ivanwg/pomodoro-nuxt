@@ -1,0 +1,29 @@
+.wrap {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--background-end-rgb);
+}
+
+.spinner {
+  position: absolute;
+  top: 42%;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: radial-gradient(farthest-side, var(--tomato) 94%, rgba(0, 0, 0, 0)) top/12px 12px no-repeat, conic-gradient(rgba(0, 0, 0, 0) 30%, var(--tomato));
+  -webkit-mask: radial-gradient(farthest-side, rgba(0, 0, 0, 0) calc(100% - 12px), #000 0);
+  animation: s3 1s infinite linear;
+}
+
+@keyframes s3 {
+  100% {
+    transform: rotate(1turn);
+  }
+}/*# sourceMappingURL=style.module.css.map */

@@ -25,6 +25,13 @@
 .btnFilled {
   background-color: var(--tomato);
   color: white;
+  background-color: var(--tomato);
+  &:disabled {
+    border-color: var(--tomato);
+    color: white;
+    opacity: .5;
+    cursor: auto;
+  }
 }
 
 @media(min-width: 768px) {

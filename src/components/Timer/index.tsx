@@ -9,6 +9,7 @@ import user, { TRestType, TUserStatus } from '@/store/user';
 import tasks from '@/store/tasks';
 import { useEffect, useRef, useState } from 'react';
 import useSound from 'use-sound';
+import { USER_MAX_LONG_REST_TIME, USER_MAX_WORK_TIME } from '@/constants';
 
 
 interface IProps {
@@ -18,6 +19,15 @@ interface IProps {
 interface IBtnObjProps {
   func: () => void;
   text: string;
+}
+
+function checkIfAddBtnDisable(minutes: number, status: TUserStatus) {
+  if (status === 'WITHOUT_TASK') {
+    return true;
+  } else if ((['WORK', 'TASK_PAUSE', 'BETWEEN_TASKS'].includes(status) && minutes >= USER_MAX_WORK_TIME + 10) || (['LONG_REST', 'SHORT_REST', 'REST_PAUSE'].includes(status) && minutes >= USER_MAX_LONG_REST_TIME + 5)) {
+    return true;
+  }
+  return false;
 }
 
 function defineHeaderClassNames(status: TUserStatus) {
@@ -86,7 +96,11 @@ const Timer = observer(({additionalClassName}: IProps) => {
   const onSkipRest = () => {
     tasks.doneOneTomato();
     timerStore.stop();
-    user.changeStatus('BETWEEN_TASKS');
+    if (!tasks.activeTasksList.length) {
+      user.changeStatus('WITHOUT_TASK');
+    } else {
+      user.changeStatus('BETWEEN_TASKS');
+    }
   }
 
   const onRest = (type: TRestType) => {
@@ -107,7 +121,6 @@ const Timer = observer(({additionalClassName}: IProps) => {
 
 
   useEffect(() => {
-    console.log(user.status)
     if (user.status === 'WITHOUT_TASK' || user.status === 'BETWEEN_TASKS') {
       setGreenBtnObj({
         func: onStart,
@@ -166,8 +179,12 @@ const Timer = observer(({additionalClassName}: IProps) => {
       } else {
         timerStore.setWorkTimeDefault();
         tasks.doneOneTomato();
+        if (!tasks.activeTasksList.length) {
+          user.changeStatus('WITHOUT_TASK');
+        } else {
+          user.changeStatus('BETWEEN_TASKS');
+        }
         
-        user.changeStatus('BETWEEN_TASKS');
       }
     }
   }, [timerStore.timeLeft, user.status]);
@@ -187,7 +204,7 @@ const Timer = observer(({additionalClassName}: IProps) => {
           <span className={styles.numbers}>{fullfillNumber(timerStore.getMinutesLeft())}</span>
           <>:</>
           <span className={styles.numbers}>{fullfillNumber(timerStore.getSecondsLeft())}</span>
-          <button className={styles.addTime} onClick={onAddMinute} disabled={user.status === 'WITHOUT_TASK'}>
+          <button className={styles.addTime} onClick={onAddMinute} disabled={checkIfAddBtnDisable(timerStore.getMinutesLeft(), user.status)}>
             <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
               <circle cx="25" cy="25" r="25" fill="#C4C4C4"/>
               <path d="M26.2756 26.1321V33H23.7244V26.1321H17V23.7029H23.7244V17H26.2756V23.7029H33V26.1321H26.2756Z" fill="white"/>

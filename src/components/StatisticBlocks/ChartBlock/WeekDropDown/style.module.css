@@ -1,0 +1,49 @@
+.select {
+  position: relative;
+  overflow: visible;
+  max-width: 100%;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 17px;
+  color: var(--always-black);
+  background-color: var(--input-bgc);
+}
+.select .filtersList {
+  position: absolute;
+  z-index: 21;
+  top: 100%;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: auto;
+  background-color: var(--input-bgc);
+}
+.select .item {
+  border-top: 1px solid var(--gray);
+}
+.select .activeItem {
+  position: relative;
+}
+.select .activeItem svg {
+  position: absolute;
+  top: calc(50% - 4px);
+  right: 17px;
+  pointer-events: none;
+  transition: transform 0.2s ease;
+}
+
+.opened .activeItem svg {
+  transform: rotate(180deg);
+}
+
+.btn {
+  padding: 19px 45px 19px 15px;
+  width: 100%;
+  text-align: start;
+}
+
+@media (min-width: 410px) {
+  .select {
+    width: 370px;
+  }
+}/*# sourceMappingURL=style.module.css.map */

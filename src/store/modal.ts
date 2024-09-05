@@ -1,29 +1,31 @@
 import { makeAutoObservable } from 'mobx';
 
-export interface IObj {
-  id: string;
-  name: string;
-  tomatoesCountNeed: number;
-}
-
+type TWhatCanBeOpened = 'DELETE' | 'SETTINGS' | 'POST_SUCCESS';
 
 
 class Modal {
   isOpened = false;
+  whatIsOpened: TWhatCanBeOpened | null = null;
   constructor() {
     makeAutoObservable(this);
   }
 
-  openModal() {
+  openModal(whatOpened: TWhatCanBeOpened) {
     this.isOpened = true;
+    this.whatIsOpened = whatOpened;
   }
 
   closeModal() {
     this.isOpened = false;
+    this.whatIsOpened = null;
+
   }
 
   toggleModal() {
     this.isOpened = !this.isOpened;
+    if (this.isOpened === false) {
+      this.whatIsOpened = null;
+    }
   }
 
 }

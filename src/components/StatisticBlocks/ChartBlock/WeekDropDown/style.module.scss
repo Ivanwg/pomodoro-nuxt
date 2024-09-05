@@ -1,7 +1,7 @@
 .select {
   position: relative;
   overflow: visible;
-  max-width: 100%;
+  max-width: 370px;
   font-size: 16px;
   font-weight: 400;
   line-height: 17px;
@@ -50,11 +50,14 @@
 
 }
 
-.block {
 
+@media(min-width: 640px) {
+  .select {
+    width: 100%;
+  }
 }
 
-@media(min-width: 410px) {
+@media(min-width: 768px) {
   .select {
     width: 370px;
   }

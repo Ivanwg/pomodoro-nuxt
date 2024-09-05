@@ -6,12 +6,18 @@ export type TUserStatus = 'WORK' | 'SHORT_REST' | 'LONG_REST' | 'REST_PAUSE' | '
 
 export type TRestType = 'LONG_REST' | 'SHORT_REST';
 
+export interface IUserTimePreferences {
+  workTime: number, 
+  shortRestTime: number, 
+  longRestTime: number
+}
+
 class User {
   status: TUserStatus = 'WITHOUT_TASK';
   workDoneLevel = 0;
-  workTime = 1;
-  shortRestTime = 1;
-  longRestTime = 1;
+  workTime = 0;
+  shortRestTime = 0;
+  longRestTime = 0;
 
   constructor() {
     makeAutoObservable(this);
@@ -22,13 +28,7 @@ class User {
   }
 
   setInitialStatus() {
-    // tasks.setDefaultLocalStorage();
-    // this.status = !tasks.getLocalStorageTasks().length ? 'WITHOUT_TASK' : 'BETWEEN_TASKS';
     this.status = 'WITHOUT_TASK';
-    // const a = new Date()
-    // const b = new Date(new Date().setMinutes(20))
-
-    // console.log(new Date(a.getTime() + b.getTime()))
   }
 
   changeStatus(newStatus: TUserStatus=this.getRestStatus()) {
@@ -43,6 +43,12 @@ class User {
     } else {
       this.status = 'SHORT_REST';
     }
+  }
+
+  changeTimeParams({workTime, shortRestTime, longRestTime}: IUserTimePreferences) {
+    this.workTime = workTime;
+    this.shortRestTime = shortRestTime;
+    this.longRestTime = longRestTime;
   }
 
 }

@@ -1,0 +1,7 @@
+.tasksList .tasksLi {
+  position: relative;
+  border-bottom: 1px solid var(--border-color);
+}
+.tasksList .tasksLi:first-child {
+  border-top: 1px solid var(--border-color);
+}/*# sourceMappingURL=style.module.css.map */

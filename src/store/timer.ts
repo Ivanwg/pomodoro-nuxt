@@ -16,8 +16,8 @@ class Timer {
   }
 
   setWorkTimeDefault() {
-    // this.timeLeft = user.workTime * 60;
-    this.timeLeft = 3;
+    this.timeLeft = user.workTime * 60;
+    // this.timeLeft = 3;
   }
 
   setRestTime(minutes: number) {
